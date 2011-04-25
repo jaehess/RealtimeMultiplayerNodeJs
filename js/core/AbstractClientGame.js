@@ -24,8 +24,8 @@ Version:
 	RealtimeMultiplayerGame.AbstractClientGame = function() {
 		RealtimeMultiplayerGame.AbstractClientGame.superclass.constructor.call(this);
 
-		this.view = new RealtimeMultiplayerGame.View.GameView();
 		this.fieldController.setupView();
+		this.setupView();
 
 		return this;
 	};
@@ -44,6 +44,10 @@ Version:
 			this.netChannel = new RealtimeMultiplayerGame.ClientNetChannel( this );
 		},
 
+		// as far as the app is concerned, there's no "need" for a view, therefore, if the
+		// developer wants to create an implementation for this, then that's their choice.
+		setupView: function() { },
+
 		tick: function() {
 			RealtimeMultiplayerGame.AbstractClientGame.superclass.tick.call(this);
 
@@ -55,12 +59,12 @@ Version:
 
 				// create a message with our characters updated information and send it off
 				this.netChannel.addMessageToQueue( false, newMessage );
-
-				// Don't update html TOO often
-				if(this.gameTick % 10 == 0)
-					this.view.update();
 			}
 
+			// Don't update html TOO often
+			if( ( this.gameTick % 10 == 0 ) && this.view != null )
+				this.view.tick();
+						
 			this.netChannel.tick();
 		},
 

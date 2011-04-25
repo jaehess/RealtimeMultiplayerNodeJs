@@ -14,7 +14,7 @@
 
 		// Will be called on client side
 		setupView: function() {
-			this.view = new RealtimeMultiplayerGame.View.FieldView();
+			this.view = new DemoApp.View.FieldView( this );
 		},
 
 		/**

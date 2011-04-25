@@ -15,7 +15,6 @@ Version:
 	1.0
 */
 (function(){
-
 	DemoApp.DemoClientGame = function() {
 		DemoApp.DemoClientGame.superclass.constructor.call(this);
 
@@ -34,6 +33,12 @@ Version:
 		{
 			DemoApp.DemoClientGame.superclass.netChannelDidConnect( messageData );
 			this.joinGame("Player" + this.netChannel.getClientid() ); // Automatically join the game with some name
+		},
+
+		setupView: function() {
+			DemoApp.DemoClientGame.superclass.setupView.call(this);
+
+			this.view = new DemoApp.View.GameView( this );
 		}
 	}
 

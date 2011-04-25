@@ -22,12 +22,15 @@ Version:
 	1.0
 */
 (function(){
-	RealtimeMultiplayerGame.namespace("RealtimeMultiplayerGame.View");
-	RealtimeMultiplayerGame.View.FieldView = function() {
+	DemoApp.namespace("DemoApp.View");
+
+	DemoApp.View.FieldView = function( controller ) {
+		DemoApp.View.FieldView.superclass.constructor.call( this, controller );
+		
 		this.setupCAAT();
 	};
 
-	RealtimeMultiplayerGame.View.FieldView.prototype = {
+	DemoApp.View.FieldView.prototype = {
 		// Properties
 		caatDirector		: null,				// CAAT Director instance
 		caatScene			: null,				// CAAT Scene instance
@@ -75,6 +78,8 @@ Version:
 
 		// Accessors
 	};
+
+	RealtimeMultiplayerGame.extend(DemoApp.View.FieldView, RealtimeMultiplayerGame.AbstractView, null);
 })()
 
 
